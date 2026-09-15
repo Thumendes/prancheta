@@ -1,0 +1,12 @@
+{
+  "name": "prancheta-scripts",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "shoot": "bun run shoot.ts"
+  },
+  "dependencies": {
+    "puppeteer": "^24.10.0"
+  },
+  "trustedDependencies": ["puppeteer"]
+}

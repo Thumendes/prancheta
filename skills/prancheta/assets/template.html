@@ -1,0 +1,65 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{{NOME DA TELA}}</title>
+  <link rel="stylesheet" href="prancheta.css">
+</head>
+<!-- class="notes" liga as anotações numeradas | class="bare" tira a tarja de título -->
+<body>
+<div class="pr-screen">
+
+  <div class="pr-caption">
+    <b>{{01 · Nome da tela}}</b>
+    <span>{{/rota/da/tela}}</span>
+    <em class="pr-caption-meta">{{Papel: Organizador · Estado: lista com dados}}</em>
+  </div>
+
+  <header class="pr-appbar">
+    <div class="pr-logo">{{Produto}}</div>
+    <nav class="pr-appbar-nav" aria-label="Principal">
+      <a href="#" aria-current="page">{{Seção}}</a>
+      <a href="#">{{Seção}}</a>
+    </nav>
+    <div class="pr-appbar-end">
+      <button class="pr-btn sm">{{Ação secundária}}</button>
+      <div class="pr-avatar">TM</div>
+    </div>
+  </header>
+
+  <div class="pr-body">
+    <nav class="pr-sidebar" aria-label="Navegação da área">
+      <div class="pr-sidebar-group">{{Grupo}}</div>
+      <a class="pr-nav-item" href="#" aria-current="page">{{Item ativo}}</a>
+      <a class="pr-nav-item" href="#">{{Item}}<span class="pr-badge">{{3}}</span></a>
+    </nav>
+
+    <main class="pr-main" id="conteudo">
+      <div class="pr-pagehead">
+        <div class="pr-pagehead-text">
+          <nav class="pr-breadcrumb" aria-label="Trilha"><ol><li><a href="#">{{Raiz}}</a></li><li>{{Atual}}</li></ol></nav>
+          <h1>{{Título da tela}}</h1>
+          <p>{{Uma linha dizendo o que o usuário faz aqui.}}</p>
+        </div>
+        <div class="pr-pagehead-actions">
+          <button class="pr-btn primary">{{Ação primária}}</button>
+        </div>
+      </div>
+
+      <!-- conteúdo da tela -->
+
+    </main>
+  </div>
+
+  <!-- Anotações: aparecem com <body class="notes">. Cada <span class="pr-note">N</span>
+       no corpo casa com um item desta lista. -->
+  <section class="pr-notelist" aria-label="Notas de design">
+    <strong>Notas</strong>
+    <ol>
+      <li>{{Decisão de interação ou acessibilidade}}</li>
+    </ol>
+  </section>
+</div>
+</body>
+</html>

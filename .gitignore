@@ -1,0 +1,4 @@
+node_modules/
+.prancheta/
+.DS_Store
+*.log

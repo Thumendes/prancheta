@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Validação · {{Projeto}}</title>
+  <link rel="stylesheet" href="prancheta.css">
+  <style>
+    body { background: var(--bg-3); }
+    .val { max-width: 1440px; margin: 0 auto; }
+    .val-hd { background: var(--ink); color: #fff; padding: var(--s5) var(--s6); }
+    .val-hd h1 { margin: 0 0 var(--s2); font-size: 22px; font-weight: 650; letter-spacing: -.02em; }
+    .val-hd p { margin: 0; color: #aab3bd; max-width: 70ch; }
+    .val-hd dl { display: flex; gap: var(--s6); margin: var(--s4) 0 0; flex-wrap: wrap; }
+    .val-hd dt { font-size: var(--t-micro); text-transform: uppercase; letter-spacing: .08em; color: #7d8792; }
+    .val-hd dd { margin: 2px 0 0; font-size: var(--t-small); }
+    .val-part { background: var(--bg); margin-bottom: var(--s5); }
+    .val-part > h2 {
+      margin: 0; padding: var(--s4) var(--s6);
+      font-size: var(--t-small); font-weight: 700; text-transform: uppercase; letter-spacing: .1em;
+      color: var(--ink-2); border-bottom: 1px solid var(--line); background: var(--bg-2);
+    }
+    .val-ask { padding: var(--s5) var(--s6); border-top: 1px solid var(--line); background: var(--bg-2); }
+    .val-ask ol { margin: var(--s3) 0 0; padding-left: var(--s5); display: grid; gap: var(--s3); color: var(--ink-2); }
+    .val-ask ol strong { color: var(--ink); }
+  </style>
+</head>
+<body class="notes">
+<div class="val">
+
+  <div class="val-hd">
+    <h1>Sessão de validação — {{Projeto}}</h1>
+    <p>{{Uma linha sobre o produto e o recorte que vamos desenhar.}}</p>
+    <dl>
+      <div><dt>Telas previstas</dt><dd>{{6}}</dd></div>
+      <div><dt>Fidelidade</dt><dd>Mid-fi, sem cor de marca</dd></div>
+      <div><dt>Breakpoints</dt><dd>1440 · 390</dd></div>
+      <div><dt>Persona</dt><dd>{{Organizador}}</dd></div>
+    </dl>
+  </div>
+
+  <!-- ====================================================================
+       PARTE 1 — TELA-PILOTO
+       Cole aqui a tela mais representativa do fluxo (a que tem mais
+       componentes), usando a estrutura de assets/template.html.
+       ==================================================================== -->
+  <section class="val-part">
+    <h2>1 · Tela-piloto</h2>
+    <!-- PILOTO:INICIO -->
+    {{COLE AQUI O <div class="pr-screen"> DA TELA-PILOTO}}
+    <!-- PILOTO:FIM -->
+    <div class="val-ask">
+      <strong>O que preciso que você confirme nesta tela</strong>
+      <ol>
+        <li><strong>{{Densidade}}</strong> — {{pergunta objetiva, com a sua recomendação já indicada}}</li>
+        <li><strong>{{Ação primária}}</strong> — {{pergunta}}</li>
+        <li><strong>{{Nomenclatura}}</strong> — {{pergunta}}</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PARTE 2 — KIT
+       O vocabulário que vou reusar nas outras telas. Aprovar aqui uma vez
+       evita retrabalho em todas as telas depois.
+       ==================================================================== -->
+  <section class="val-part">
+    <h2>2 · Kit de componentes</h2>
+    <div class="kit">
+
+      <div class="kit-sec">
+        <h2>Tokens</h2>
+        <div class="kit-swatches">
+          <div class="kit-swatch"><i style="background:var(--ink)"></i><span>ink</span></div>
+          <div class="kit-swatch"><i style="background:var(--ink-2)"></i><span>ink-2</span></div>
+          <div class="kit-swatch"><i style="background:var(--action)"></i><span>action</span></div>
+          <div class="kit-swatch"><i style="background:var(--bg-2)"></i><span>bg-2</span></div>
+          <div class="kit-swatch"><i style="background:var(--bg-3)"></i><span>bg-3</span></div>
+          <div class="kit-swatch"><i style="background:var(--line-strong)"></i><span>line</span></div>
+        </div>
+        <div class="kit-row">
+          <figure class="kit-box"><figcaption>escala tipográfica</figcaption>
+            <div style="font-size:var(--t-display);font-weight:650;letter-spacing:-.02em">Display 28</div>
+            <div style="font-size:var(--t-title);font-weight:600">Título 20</div>
+            <div style="font-size:var(--t-section);font-weight:600">Seção 16</div>
+            <div>Corpo 14 — a medida de leitura fica em torno de 68 caracteres.</div>
+            <div class="pr-micro">Micro 11 · rótulos e metadados</div>
+          </figure>
+          <figure class="kit-box"><figcaption>espaçamento (base 4)</figcaption>
+            <div class="pr-col">
+              <div class="pr-row"><i style="display:block;height:12px;width:var(--s2);background:var(--action)"></i><span class="pr-micro">8 — dentro do componente</span></div>
+              <div class="pr-row"><i style="display:block;height:12px;width:var(--s4);background:var(--action)"></i><span class="pr-micro">16 — entre campos</span></div>
+              <div class="pr-row"><i style="display:block;height:12px;width:var(--s5);background:var(--action)"></i><span class="pr-micro">24 — entre blocos</span></div>
+              <div class="pr-row"><i style="display:block;height:12px;width:var(--s6);background:var(--action)"></i><span class="pr-micro">32 — margem da página</span></div>
+            </div>
+          </figure>
+        </div>
+      </div>
+
+      <div class="kit-sec">
+        <h2>Ações</h2>
+        <div class="kit-row">
+          <figure class="kit-box"><figcaption>hierarquia</figcaption>
+            <div class="pr-row pr-wrap">
+              <button class="pr-btn primary">Primária</button>
+              <button class="pr-btn">Secundária</button>
+              <button class="pr-btn ghost">Terciária</button>
+              <button class="pr-btn danger">Destrutiva</button>
+              <button class="pr-btn" disabled>Desabilitada</button>
+            </div>
+            <p class="pr-micro" style="margin:var(--s3) 0 0">Uma primária por tela. Destrutiva sempre pede confirmação.</p>
+          </figure>
+          <figure class="kit-box"><figcaption>tamanhos e foco</figcaption>
+            <div class="pr-row pr-wrap">
+              <button class="pr-btn sm">Pequena</button>
+              <button class="pr-btn">Padrão 40px</button>
+              <button class="pr-btn icon" aria-label="Mais opções">⋯</button>
+              <button class="pr-btn primary pr-focus">Com foco</button>
+            </div>
+          </figure>
+        </div>
+      </div>
+
+      <div class="kit-sec">
+        <h2>Entrada de dados</h2>
+        <div class="kit-row">
+          <figure class="kit-box"><figcaption>campo · normal, ajuda, erro</figcaption>
+            <div class="pr-form">
+              <div class="pr-field">
+                <label for="k1">Nome do torneio <span class="pr-req">(obrigatório)</span></label>
+                <input class="pr-input" id="k1" value="Copa de Verão 2026">
+                <small class="pr-help" id="k1h">Aparece na busca pública.</small>
+              </div>
+              <div class="pr-field">
+                <label for="k2">E-mail</label>
+                <input class="pr-input" id="k2" aria-invalid="true" aria-describedby="k2e" value="thiago@">
+                <small class="pr-error" id="k2e">Falta o domínio depois do @.</small>
+              </div>
+              <div class="pr-field">
+                <label for="k3">Formato</label>
+                <select class="pr-select" id="k3"><option>Mata-mata</option></select>
+              </div>
+            </div>
+          </figure>
+          <figure class="kit-box"><figcaption>escolha</figcaption>
+            <div class="pr-choicegroup">
+              <div class="pr-choice"><input type="radio" id="k4" checked><label for="k4">Aberto<small>Qualquer um se inscreve</small></label></div>
+              <div class="pr-choice"><input type="radio" id="k5"><label for="k5">Por convite<small>Só quem receber o link</small></label></div>
+              <div class="pr-choice"><input type="checkbox" id="k6" checked><label for="k6">Notificar participantes</label></div>
+              <div class="pr-row"><span class="pr-switch" data-on="true"></span><span>Inscrições abertas</span></div>
+              <div class="pr-row pr-wrap"><span class="pr-chip" aria-pressed="true">Ativos <b class="pr-x">✕</b></span><span class="pr-chip">Encerrados</span></div>
+            </div>
+          </figure>
+        </div>
+      </div>
+
+      <div class="kit-sec">
+        <h2>Exibição de dados</h2>
+        <div class="kit-row">
+          <figure class="kit-box" style="flex:2"><figcaption>tabela (vira cartão no mobile)</figcaption>
+            <table class="pr-table">
+              <thead><tr><th aria-sort="ascending">Torneio</th><th>Status</th><th class="num">Inscritos</th><th></th></tr></thead>
+              <tbody>
+                <tr>
+                  <td data-label="Torneio">Copa de Verão</td>
+                  <td data-label="Status"><span class="pr-badge ok">Aberto</span></td>
+                  <td data-label="Inscritos" class="num">32</td>
+                  <td><div class="pr-rowactions"><button class="pr-btn sm">Abrir</button></div></td>
+                </tr>
+                <tr>
+                  <td data-label="Torneio">Liga Universitária</td>
+                  <td data-label="Status"><span class="pr-badge wait">Rascunho</span></td>
+                  <td data-label="Inscritos" class="num">0</td>
+                  <td><div class="pr-rowactions"><button class="pr-btn sm">Abrir</button></div></td>
+                </tr>
+              </tbody>
+            </table>
+          </figure>
+          <figure class="kit-box"><figcaption>métrica e progresso</figcaption>
+            <dl class="pr-stat"><dt>Inscrições</dt><dd>128 <span class="pr-delta">+12 na semana</span></dd></dl>
+            <div style="margin-top:var(--s3)"><div class="pr-progress"><i style="width:62%"></i></div><small class="pr-micro">62% das vagas</small></div>
+          </figure>
+        </div>
+      </div>
+
+      <div class="kit-sec">
+        <h2>Estados — os quatro que toda lista precisa</h2>
+        <div class="kit-row">
+          <figure class="kit-box"><figcaption>vazio</figcaption>
+            <div class="pr-empty" style="padding:var(--s5) 0">
+              <div class="pr-empty-art"></div>
+              <h3>Nenhum torneio ainda</h3>
+              <p>Crie o primeiro para abrir inscrições.</p>
+              <button class="pr-btn primary">Criar torneio</button>
+            </div>
+          </figure>
+          <figure class="kit-box"><figcaption>carregando</figcaption>
+            <div class="pr-skeletonstack">
+              <div class="pr-skeleton line-md"></div>
+              <div class="pr-skeleton block"></div>
+              <div class="pr-skeleton line-sm"></div>
+            </div>
+          </figure>
+          <figure class="kit-box"><figcaption>erro e aviso</figcaption>
+            <div class="pr-col">
+              <div class="pr-alert err"><div><strong>Não foi possível carregar</strong><p>Tente de novo em instantes.</p></div></div>
+              <div class="pr-alert warn"><div><strong>Inscrições encerram hoje</strong></div></div>
+              <div class="pr-toast"><span>Torneio salvo.</span><button class="pr-btn sm">Desfazer</button></div>
+            </div>
+          </figure>
+        </div>
+      </div>
+
+      <div class="kit-sec">
+        <h2>Fluxo e sobreposição</h2>
+        <div class="kit-row">
+          <figure class="kit-box"><figcaption>passos</figcaption>
+            <div class="pr-stepper">
+              <span class="pr-step" data-n="1" data-done="true"><span>Dados</span></span><i class="pr-steprule"></i>
+              <span class="pr-step" data-n="2" aria-current="step"><span>Formato</span></span><i class="pr-steprule"></i>
+              <span class="pr-step" data-n="3"><span>Revisão</span></span>
+            </div>
+          </figure>
+          <figure class="kit-box" style="min-height:290px"><figcaption>modal (desenhado, sem JS)</figcaption>
+            <div class="pr-overlay" style="height:250px;border-radius:var(--radius);overflow:hidden;background:var(--bg-2)">
+              <div class="pr-scrim"></div>
+              <div class="pr-modal" style="top:20px">
+                <div class="pr-modal-head"><h2>Excluir torneio?</h2><button class="pr-btn ghost icon sm" aria-label="Fechar">✕</button></div>
+                <div class="pr-modal-body"><p style="margin:0">As 32 inscrições serão perdidas. Não dá para desfazer.</p></div>
+                <div class="pr-modal-foot"><button class="pr-btn">Cancelar</button><button class="pr-btn danger">Excluir</button></div>
+              </div>
+            </div>
+          </figure>
+        </div>
+      </div>
+
+      <div class="kit-sec">
+        <h2>Acessibilidade — o que fica desenhado</h2>
+        <div class="kit-row">
+          <figure class="kit-box"><figcaption>foco e atalho</figcaption>
+            <div class="pr-col">
+              <span class="pr-skiplink" style="position:static;display:inline-block">Pular para o conteúdo</span>
+              <input class="pr-input pr-focus" value="Anel de foco de 2px, offset 2px">
+              <p class="pr-micro" style="margin:0">Alvo mínimo de 44px no mobile. Ordem de tab segue a ordem do HTML.</p>
+            </div>
+          </figure>
+          <figure class="kit-box"><figcaption>estado nunca só por cor</figcaption>
+            <div class="pr-row pr-wrap">
+              <span class="pr-badge ok">Aprovado</span>
+              <span class="pr-badge warn">Pendente</span>
+              <span class="pr-badge err">Recusado</span>
+              <span class="pr-badge wait">Em análise</span>
+            </div>
+            <p class="pr-micro" style="margin:var(--s3) 0 0">Cada estado carrega glifo + rótulo, então funciona em cinza e para daltônicos.</p>
+          </figure>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="val-ask">
+      <strong>Sobre o kit</strong>
+      <ol>
+        <li><strong>Componente faltando?</strong> — {{o que eu suspeito que vai faltar, ex.: calendário, upload, chat}}</li>
+        <li><strong>Nomenclatura</strong> — {{termo do domínio que preciso confirmar}}</li>
+      </ol>
+    </div>
+  </section>
+
+  <!-- ====================================================================
+       PARTE 3 — MAPA DAS TELAS
+       ==================================================================== -->
+  <section class="val-part">
+    <h2>3 · Telas que vou gerar</h2>
+    <table class="pr-table" style="padding:0 var(--s6) var(--s6)">
+      <thead><tr><th>#</th><th>Tela</th><th>Papel</th><th>Estado retratado</th><th>Por quê</th></tr></thead>
+      <tbody>
+        <tr><td data-label="#">01</td><td data-label="Tela">{{Nome}}</td><td data-label="Papel">{{Persona}}</td><td data-label="Estado">{{com dados}}</td><td data-label="Por quê">{{decisão que essa tela resolve}}</td></tr>
+      </tbody>
+    </table>
+  </section>
+
+</div>
+</body>
+</html>

@@ -1,0 +1,657 @@
+/* ==========================================================================
+   prancheta.css — sistema de wireframe mid-fi
+   Tipografia e espaçamento reais, zero cor de marca. A hierarquia vem de
+   peso, escala e um único tom neutro escuro — assim a discussão fica sobre
+   estrutura e fluxo, não sobre paleta.
+   ========================================================================== */
+
+:root {
+  /* tinta */
+  --ink:        #16191d;
+  --ink-2:      #5a636d;
+  --ink-3:      #8d959e;
+  --ink-invert: #ffffff;
+
+  /* superfície */
+  --bg:    #ffffff;
+  --bg-2:  #f6f7f9;
+  --bg-3:  #eaedf1;
+  --bg-4:  #dfe3e8;
+
+  /* traço */
+  --line:        #dce0e6;
+  --line-strong: #b7bec7;
+
+  /* ação — um único neutro escuro faz o papel de "primário" */
+  --action:       #22303d;
+  --action-hover: #16212b;
+
+  /* semântica em cinza + textura, nunca em cor */
+  --focus: #2f6feb;
+
+  /* escala tipográfica */
+  --font: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  --mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, monospace;
+
+  --t-display: 28px;
+  --t-title:   20px;
+  --t-section: 16px;
+  --t-body:    14px;
+  --t-small:   13px;
+  --t-micro:   11px;
+
+  /* espaçamento (base 4) */
+  --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px;
+  --s5: 24px; --s6: 32px; --s7: 48px; --s8: 64px;
+
+  --radius:    6px;
+  --radius-lg: 10px;
+  --radius-pill: 999px;
+
+  /* alvo mínimo de toque — WCAG 2.5.8 */
+  --touch: 44px;
+
+  --shadow:    0 1px 2px rgba(16,24,32,.06), 0 1px 3px rgba(16,24,32,.08);
+  --shadow-lg: 0 8px 24px rgba(16,24,32,.12), 0 2px 6px rgba(16,24,32,.08);
+
+  --shell-w: 1440px;
+}
+
+* { box-sizing: border-box; }
+
+html { -webkit-font-smoothing: antialiased; text-rendering: optimizeLegibility; }
+
+body {
+  margin: 0;
+  font-family: var(--font);
+  font-size: var(--t-body);
+  line-height: 1.5;
+  color: var(--ink);
+  background: var(--bg-3);
+}
+
+/* ==========================================================================
+   1 · Moldura da tela
+   O .pr-caption é o rótulo do artefato (nome da tela + rota). Some com
+   <body class="bare"> quando o PNG vai ser embutido em outro documento.
+   ========================================================================== */
+
+.pr-screen {
+  position: relative;
+  max-width: var(--shell-w);
+  margin: 0 auto;
+  background: var(--bg);
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.pr-caption {
+  display: flex;
+  align-items: baseline;
+  gap: var(--s3);
+  padding: var(--s3) var(--s5);
+  background: var(--ink);
+  color: var(--ink-invert);
+  font-size: var(--t-small);
+}
+.pr-caption b { font-weight: 600; letter-spacing: .01em; }
+.pr-caption span { color: #a9b2bc; font-family: var(--mono); font-size: var(--t-micro); }
+.pr-caption .pr-caption-meta { margin-left: auto; color: #a9b2bc; font-size: var(--t-micro); }
+body.bare .pr-caption { display: none; }
+
+.pr-body { flex: 1; display: flex; min-height: 0; }
+
+/* ==========================================================================
+   2 · Navegação
+   ========================================================================== */
+
+.pr-appbar {
+  display: flex; align-items: center; gap: var(--s4);
+  height: 60px; padding: 0 var(--s5);
+  border-bottom: 1px solid var(--line);
+  background: var(--bg);
+}
+.pr-logo {
+  display: flex; align-items: center; gap: var(--s2);
+  font-weight: 600; font-size: var(--t-section); letter-spacing: -.01em;
+}
+.pr-logo::before {
+  content: ""; width: 26px; height: 26px; border-radius: var(--radius);
+  background: var(--action);
+}
+.pr-appbar-nav { display: flex; gap: var(--s1); margin-left: var(--s5); }
+.pr-appbar-nav a {
+  padding: var(--s2) var(--s3); border-radius: var(--radius);
+  color: var(--ink-2); text-decoration: none; font-size: var(--t-body);
+}
+.pr-appbar-nav a[aria-current="page"] { background: var(--bg-3); color: var(--ink); font-weight: 500; }
+.pr-appbar-end { margin-left: auto; display: flex; align-items: center; gap: var(--s3); }
+
+.pr-sidebar {
+  width: 248px; flex: 0 0 248px;
+  border-right: 1px solid var(--line);
+  background: var(--bg-2);
+  padding: var(--s4) var(--s3);
+  display: flex; flex-direction: column; gap: var(--s1);
+}
+.pr-sidebar-group {
+  padding: var(--s4) var(--s3) var(--s2);
+  font-size: var(--t-micro); text-transform: uppercase;
+  letter-spacing: .08em; color: var(--ink-3); font-weight: 600;
+}
+.pr-nav-item {
+  display: flex; align-items: center; gap: var(--s3);
+  min-height: 38px; padding: 0 var(--s3);
+  border-radius: var(--radius);
+  color: var(--ink-2); text-decoration: none;
+}
+.pr-nav-item::before {
+  content: ""; width: 16px; height: 16px; border-radius: 3px;
+  background: var(--bg-4); flex: 0 0 16px;
+}
+.pr-nav-item[aria-current="page"] { background: var(--bg-4); color: var(--ink); font-weight: 500; }
+.pr-nav-item[aria-current="page"]::before { background: var(--action); }
+.pr-nav-item .pr-badge { margin-left: auto; }
+
+.pr-breadcrumb {
+  display: flex; align-items: center; gap: var(--s2);
+  font-size: var(--t-small); color: var(--ink-3);
+}
+.pr-breadcrumb a { color: var(--ink-2); text-decoration: none; }
+.pr-breadcrumb li + li::before { content: "/"; margin-right: var(--s2); color: var(--line-strong); }
+.pr-breadcrumb ol { display: flex; gap: var(--s2); list-style: none; margin: 0; padding: 0; }
+
+.pr-tabs {
+  display: flex; gap: var(--s5);
+  border-bottom: 1px solid var(--line);
+  padding: 0 var(--s6);
+}
+.pr-tab {
+  padding: var(--s3) 0; margin-bottom: -1px;
+  border-bottom: 2px solid transparent;
+  color: var(--ink-2); text-decoration: none; font-size: var(--t-body);
+}
+.pr-tab[aria-selected="true"] { color: var(--ink); border-bottom-color: var(--action); font-weight: 500; }
+
+/* ==========================================================================
+   3 · Conteúdo
+   ========================================================================== */
+
+.pr-main { flex: 1; min-width: 0; padding: var(--s6); overflow: hidden; }
+.pr-main.flush { padding: 0; }
+
+.pr-pagehead {
+  display: flex; align-items: flex-start; gap: var(--s4);
+  margin-bottom: var(--s5);
+}
+.pr-pagehead-text { min-width: 0; }
+.pr-pagehead h1 { font-size: var(--t-display); font-weight: 650; letter-spacing: -.02em; margin: var(--s2) 0 var(--s1); }
+.pr-pagehead p { margin: 0; color: var(--ink-2); font-size: var(--t-body); max-width: 68ch; }
+.pr-pagehead-actions { margin-left: auto; display: flex; gap: var(--s2); flex: 0 0 auto; }
+
+.pr-section { margin-bottom: var(--s6); }
+.pr-section > h2 { font-size: var(--t-title); font-weight: 600; letter-spacing: -.01em; margin: 0 0 var(--s4); }
+
+.pr-card {
+  background: var(--bg); border: 1px solid var(--line);
+  border-radius: var(--radius-lg); padding: var(--s5);
+}
+.pr-card-head {
+  display: flex; align-items: center; gap: var(--s3);
+  margin: calc(var(--s5) * -1) calc(var(--s5) * -1) var(--s4);
+  padding: var(--s4) var(--s5);
+  border-bottom: 1px solid var(--line);
+}
+.pr-card-head h3 { margin: 0; font-size: var(--t-section); font-weight: 600; }
+.pr-card-head .pr-btn, .pr-card-head .pr-actions { margin-left: auto; }
+
+.pr-grid { display: grid; gap: var(--s4); }
+.pr-grid.cols-2 { grid-template-columns: repeat(2, minmax(0,1fr)); }
+.pr-grid.cols-3 { grid-template-columns: repeat(3, minmax(0,1fr)); }
+.pr-grid.cols-4 { grid-template-columns: repeat(4, minmax(0,1fr)); }
+.pr-grid.sidebar-right { grid-template-columns: minmax(0,1fr) 320px; }
+
+.pr-stat { border: 1px solid var(--line); border-radius: var(--radius-lg); padding: var(--s4); background: var(--bg); }
+.pr-stat dt { font-size: var(--t-small); color: var(--ink-2); margin: 0 0 var(--s2); }
+.pr-stat dd { margin: 0; font-size: 26px; font-weight: 650; letter-spacing: -.02em; }
+.pr-stat .pr-delta { font-size: var(--t-small); color: var(--ink-2); font-weight: 400; margin-left: var(--s2); }
+
+/* ==========================================================================
+   4 · Tabela e lista
+   ========================================================================== */
+
+.pr-table { width: 100%; border-collapse: collapse; font-size: var(--t-body); }
+.pr-table caption { text-align: left; padding: 0 0 var(--s3); color: var(--ink-2); font-size: var(--t-small); }
+.pr-table th {
+  text-align: left; font-weight: 600; font-size: var(--t-small); color: var(--ink-2);
+  padding: var(--s3) var(--s4); border-bottom: 1px solid var(--line-strong);
+  white-space: nowrap;
+}
+.pr-table th[aria-sort]::after { content: " ↑"; color: var(--ink-3); }
+.pr-table th[aria-sort="descending"]::after { content: " ↓"; }
+.pr-table td { padding: var(--s3) var(--s4); border-bottom: 1px solid var(--line); vertical-align: middle; }
+.pr-table tbody tr:hover { background: var(--bg-2); }
+.pr-table .num { text-align: right; font-variant-numeric: tabular-nums; }
+.pr-table .pr-rowactions { display: flex; gap: var(--s1); justify-content: flex-end; }
+
+.pr-list { list-style: none; margin: 0; padding: 0; }
+.pr-list-item {
+  display: flex; align-items: center; gap: var(--s4);
+  padding: var(--s3) var(--s4); border-bottom: 1px solid var(--line);
+  min-height: var(--touch);
+}
+.pr-list-item:last-child { border-bottom: 0; }
+.pr-list-item-text { min-width: 0; flex: 1; }
+.pr-list-item-text strong { display: block; font-weight: 550; }
+.pr-list-item-text small { color: var(--ink-2); }
+
+.pr-toolbar {
+  display: flex; align-items: center; gap: var(--s2);
+  padding: var(--s3) var(--s4); border-bottom: 1px solid var(--line);
+  background: var(--bg-2); flex-wrap: wrap;
+}
+.pr-toolbar .pr-field { margin: 0; }
+.pr-toolbar-end { margin-left: auto; display: flex; gap: var(--s2); }
+
+.pr-pagination {
+  display: flex; align-items: center; gap: var(--s2);
+  padding: var(--s3) var(--s4); border-top: 1px solid var(--line);
+  font-size: var(--t-small); color: var(--ink-2);
+}
+.pr-pagination .pr-pages { margin-left: auto; display: flex; gap: var(--s1); }
+.pr-pagination .pr-pages a {
+  min-width: 32px; height: 32px; display: grid; place-items: center;
+  border: 1px solid var(--line); border-radius: var(--radius);
+  color: var(--ink-2); text-decoration: none;
+}
+.pr-pagination .pr-pages a[aria-current="page"] { background: var(--action); color: var(--ink-invert); border-color: var(--action); }
+
+/* ==========================================================================
+   5 · Formulário
+   Rótulo sempre visível e acima do campo: placeholder como rótulo some ao
+   digitar e quebra leitor de tela. Erro e ajuda ficam ligados via
+   aria-describedby no HTML.
+   ========================================================================== */
+
+.pr-form { display: grid; gap: var(--s4); max-width: 640px; }
+.pr-form.wide { max-width: none; }
+.pr-fieldrow { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: var(--s4); }
+
+.pr-field { display: grid; gap: var(--s2); }
+.pr-field > label { font-size: var(--t-small); font-weight: 550; color: var(--ink); }
+.pr-field .pr-req { color: var(--ink-2); font-weight: 400; }
+.pr-field .pr-help { font-size: var(--t-small); color: var(--ink-2); }
+.pr-field .pr-error { font-size: var(--t-small); color: var(--ink); font-weight: 550; }
+.pr-field .pr-error::before { content: "▲ "; }
+
+.pr-input, .pr-select, .pr-textarea {
+  font: inherit; color: var(--ink);
+  min-height: 40px; padding: var(--s2) var(--s3);
+  border: 1px solid var(--line-strong); border-radius: var(--radius);
+  background: var(--bg); width: 100%;
+}
+.pr-textarea { min-height: 104px; resize: vertical; padding-top: var(--s3); }
+.pr-input::placeholder, .pr-textarea::placeholder { color: var(--ink-3); }
+.pr-input[aria-invalid="true"], .pr-select[aria-invalid="true"], .pr-textarea[aria-invalid="true"] {
+  border-color: var(--ink); border-width: 2px; background: var(--bg-2);
+}
+.pr-input:disabled, .pr-select:disabled { background: var(--bg-3); color: var(--ink-3); }
+.pr-select { appearance: none; background-image: linear-gradient(45deg, transparent 50%, var(--ink-2) 50%), linear-gradient(135deg, var(--ink-2) 50%, transparent 50%); background-position: calc(100% - 18px) 17px, calc(100% - 13px) 17px; background-size: 5px 5px; background-repeat: no-repeat; padding-right: var(--s6); }
+
+.pr-inputgroup { display: flex; }
+.pr-inputgroup .pr-input { border-radius: var(--radius) 0 0 var(--radius); }
+.pr-inputgroup .pr-btn { border-radius: 0 var(--radius) var(--radius) 0; margin-left: -1px; }
+
+.pr-choice { display: flex; align-items: flex-start; gap: var(--s3); min-height: 32px; }
+.pr-choice input { width: 18px; height: 18px; margin: 3px 0 0; accent-color: var(--action); flex: 0 0 18px; }
+.pr-choice label { font-size: var(--t-body); }
+.pr-choice small { display: block; color: var(--ink-2); font-size: var(--t-small); }
+.pr-choicegroup { display: grid; gap: var(--s3); }
+
+.pr-switch {
+  width: 40px; height: 24px; border-radius: var(--radius-pill);
+  background: var(--bg-4); position: relative; flex: 0 0 40px;
+}
+.pr-switch::after {
+  content: ""; position: absolute; top: 3px; left: 3px;
+  width: 18px; height: 18px; border-radius: 50%; background: var(--bg);
+  box-shadow: var(--shadow);
+}
+.pr-switch[data-on="true"] { background: var(--action); }
+.pr-switch[data-on="true"]::after { left: 19px; }
+
+.pr-formactions {
+  display: flex; gap: var(--s2); align-items: center;
+  padding-top: var(--s4); border-top: 1px solid var(--line);
+}
+.pr-formactions .pr-spacer { margin-left: auto; }
+
+/* ==========================================================================
+   6 · Ações e sinalização
+   ========================================================================== */
+
+.pr-btn {
+  display: inline-flex; align-items: center; justify-content: center; gap: var(--s2);
+  min-height: 40px; padding: 0 var(--s4);
+  font: inherit; font-weight: 550; font-size: var(--t-body);
+  border: 1px solid var(--line-strong); border-radius: var(--radius);
+  background: var(--bg); color: var(--ink);
+  text-decoration: none; cursor: pointer; white-space: nowrap;
+}
+.pr-btn.primary { background: var(--action); border-color: var(--action); color: var(--ink-invert); }
+.pr-btn.ghost { border-color: transparent; background: transparent; color: var(--ink-2); }
+.pr-btn.danger { border-color: var(--ink); color: var(--ink); font-weight: 600; }
+.pr-btn.sm { min-height: 32px; padding: 0 var(--s3); font-size: var(--t-small); }
+.pr-btn.icon { width: 40px; padding: 0; }
+.pr-btn.icon.sm { width: 32px; }
+.pr-btn[disabled], .pr-btn[aria-disabled="true"] { background: var(--bg-3); color: var(--ink-3); border-color: var(--line); }
+.pr-btn.block { width: 100%; }
+.pr-actions { display: flex; gap: var(--s2); }
+
+.pr-badge {
+  display: inline-flex; align-items: center; gap: var(--s1);
+  height: 22px; padding: 0 var(--s2);
+  border: 1px solid var(--line-strong); border-radius: var(--radius-pill);
+  font-size: var(--t-micro); font-weight: 600; letter-spacing: .02em;
+  text-transform: uppercase; color: var(--ink-2); background: var(--bg-2);
+}
+.pr-badge.solid { background: var(--action); border-color: var(--action); color: var(--ink-invert); }
+.pr-badge.outline { background: transparent; }
+/* Estado nunca depende só de cor: um glifo acompanha o rótulo. */
+.pr-badge::before { content: "●"; font-size: 8px; }
+.pr-badge.ok::before    { content: "✔"; font-size: 10px; }
+.pr-badge.warn::before  { content: "▲"; font-size: 9px; }
+.pr-badge.err::before   { content: "✕"; font-size: 10px; }
+.pr-badge.wait::before  { content: "◷"; font-size: 10px; }
+
+.pr-avatar {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--bg-4); display: grid; place-items: center;
+  font-size: var(--t-small); font-weight: 600; color: var(--ink-2); flex: 0 0 32px;
+}
+.pr-avatar.lg { width: 48px; height: 48px; flex-basis: 48px; font-size: var(--t-body); }
+
+.pr-thumb {
+  background: var(--bg-3); border-radius: var(--radius);
+  display: grid; place-items: center; color: var(--ink-3); font-size: var(--t-micro);
+  aspect-ratio: 16/9; width: 100%;
+}
+.pr-thumb::after { content: "imagem"; }
+.pr-thumb.square { aspect-ratio: 1; }
+
+.pr-chip {
+  display: inline-flex; align-items: center; gap: var(--s2);
+  height: 30px; padding: 0 var(--s3);
+  border: 1px solid var(--line-strong); border-radius: var(--radius-pill);
+  font-size: var(--t-small); background: var(--bg);
+}
+.pr-chip[aria-pressed="true"] { background: var(--action); border-color: var(--action); color: var(--ink-invert); }
+.pr-chip .pr-x { color: var(--ink-3); }
+
+/* ==========================================================================
+   7 · Estados — vazio, carregando, erro, feedback
+   Toda tela de lista precisa dos quatro. É o que separa wireframe de
+   desenho bonito: o caminho feliz é o caso mais fácil.
+   ========================================================================== */
+
+.pr-empty {
+  display: grid; justify-items: center; gap: var(--s3);
+  padding: var(--s8) var(--s5); text-align: center;
+}
+.pr-empty-art { width: 64px; height: 64px; border-radius: var(--radius-lg); background: var(--bg-3); }
+.pr-empty h3 { margin: 0; font-size: var(--t-section); font-weight: 600; }
+.pr-empty p { margin: 0; color: var(--ink-2); max-width: 48ch; }
+
+.pr-skeleton {
+  background: linear-gradient(90deg, var(--bg-3) 0%, var(--bg-2) 50%, var(--bg-3) 100%);
+  border-radius: var(--radius); height: 14px; width: 100%;
+}
+.pr-skeleton.line-sm { width: 40%; }
+.pr-skeleton.line-md { width: 70%; }
+.pr-skeleton.block { height: 72px; }
+.pr-skeletonstack { display: grid; gap: var(--s3); }
+
+.pr-alert {
+  display: flex; gap: var(--s3); align-items: flex-start;
+  padding: var(--s3) var(--s4);
+  border: 1px solid var(--line-strong); border-left-width: 4px;
+  border-radius: var(--radius); background: var(--bg-2);
+}
+.pr-alert::before { content: "i"; font-weight: 700; width: 18px; height: 18px; border-radius: 50%; background: var(--ink-2); color: var(--ink-invert); display: grid; place-items: center; font-size: var(--t-micro); flex: 0 0 18px; margin-top: 2px; }
+.pr-alert.warn::before { content: "!"; }
+.pr-alert.err::before  { content: "✕"; background: var(--ink); }
+.pr-alert.ok::before   { content: "✔"; }
+.pr-alert strong { display: block; }
+.pr-alert p { margin: var(--s1) 0 0; color: var(--ink-2); }
+
+.pr-toast {
+  display: flex; align-items: center; gap: var(--s3);
+  padding: var(--s3) var(--s4); border-radius: var(--radius);
+  background: var(--ink); color: var(--ink-invert);
+  box-shadow: var(--shadow-lg); max-width: 420px;
+}
+.pr-toast .pr-btn { color: var(--ink-invert); border-color: #4a545f; background: transparent; }
+
+.pr-progress { height: 6px; border-radius: var(--radius-pill); background: var(--bg-3); overflow: hidden; }
+.pr-progress > i { display: block; height: 100%; background: var(--action); }
+
+/* ==========================================================================
+   8 · Sobreposições
+   Modal e drawer são desenhados inline (sem JS) para o print sair completo.
+   ========================================================================== */
+
+.pr-scrim { position: absolute; inset: 0; background: rgba(16,24,32,.42); }
+.pr-overlay { position: relative; }
+
+.pr-modal {
+  position: absolute; top: 96px; left: 50%; transform: translateX(-50%);
+  width: min(560px, calc(100% - 48px));
+  background: var(--bg); border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg); overflow: hidden;
+}
+.pr-modal-head { display: flex; align-items: center; gap: var(--s3); padding: var(--s4) var(--s5); border-bottom: 1px solid var(--line); }
+.pr-modal-head h2 { margin: 0; font-size: var(--t-section); font-weight: 600; }
+.pr-modal-head .pr-btn { margin-left: auto; }
+.pr-modal-body { padding: var(--s5); }
+.pr-modal-foot { display: flex; gap: var(--s2); justify-content: flex-end; padding: var(--s4) var(--s5); border-top: 1px solid var(--line); background: var(--bg-2); }
+
+.pr-drawer {
+  position: absolute; top: 0; right: 0; bottom: 0; width: 400px;
+  background: var(--bg); border-left: 1px solid var(--line);
+  box-shadow: var(--shadow-lg); display: flex; flex-direction: column;
+}
+.pr-drawer .pr-modal-body { flex: 1; }
+
+.pr-menu {
+  position: absolute; min-width: 200px; padding: var(--s1);
+  background: var(--bg); border: 1px solid var(--line);
+  border-radius: var(--radius); box-shadow: var(--shadow-lg);
+}
+.pr-menu a {
+  display: flex; align-items: center; gap: var(--s3);
+  min-height: 34px; padding: 0 var(--s3); border-radius: 4px;
+  color: var(--ink); text-decoration: none; font-size: var(--t-body);
+}
+.pr-menu a:hover { background: var(--bg-2); }
+.pr-menu hr { border: 0; border-top: 1px solid var(--line); margin: var(--s1) 0; }
+
+/* ==========================================================================
+   9 · Fluxo
+   ========================================================================== */
+
+.pr-stepper { display: flex; align-items: center; gap: var(--s3); }
+.pr-step { display: flex; align-items: center; gap: var(--s2); color: var(--ink-3); font-size: var(--t-small); }
+.pr-step::before {
+  content: attr(data-n); width: 26px; height: 26px; border-radius: 50%;
+  border: 1px solid var(--line-strong); display: grid; place-items: center;
+  font-size: var(--t-small); font-weight: 600; color: var(--ink-2); background: var(--bg);
+}
+.pr-step[aria-current="step"] { color: var(--ink); font-weight: 600; }
+.pr-step[aria-current="step"]::before { background: var(--action); border-color: var(--action); color: var(--ink-invert); }
+.pr-step[data-done="true"]::before { content: "✔"; background: var(--bg-4); }
+.pr-stepper .pr-steprule { flex: 1; height: 1px; background: var(--line-strong); }
+
+/* ==========================================================================
+   10 · Acessibilidade visível
+   O anel de foco desenhado é uma decisão de design, não detalhe de
+   implementação — por isso aparece no wireframe.
+   ========================================================================== */
+
+:where(a, button, input, select, textarea, [tabindex]):focus-visible,
+.pr-focus {
+  outline: 2px solid var(--focus);
+  outline-offset: 2px;
+  border-radius: var(--radius);
+}
+.pr-skiplink {
+  position: absolute; left: var(--s4); top: var(--s4); z-index: 10;
+  padding: var(--s2) var(--s3); background: var(--ink); color: var(--ink-invert);
+  border-radius: var(--radius); font-size: var(--t-small);
+}
+.pr-srlabel { font-size: var(--t-micro); color: var(--ink-3); font-family: var(--mono); }
+
+/* Anotações numeradas — ligue com <body class="notes"> */
+.pr-note {
+  display: none;
+  width: 20px; height: 20px; border-radius: 50%;
+  background: var(--focus); color: #fff;
+  font-size: var(--t-micro); font-weight: 700;
+  place-items: center; vertical-align: super; margin-left: var(--s1);
+}
+body.notes .pr-note { display: inline-grid; }
+.pr-notelist { display: none; }
+body.notes .pr-notelist {
+  display: block; border-top: 1px solid var(--line);
+  padding: var(--s5) var(--s6); background: var(--bg-2);
+  font-size: var(--t-small); color: var(--ink-2);
+}
+body.notes .pr-notelist ol { margin: var(--s2) 0 0; padding-left: var(--s5); display: grid; gap: var(--s2); }
+
+/* utilitários */
+.pr-muted { color: var(--ink-2); }
+.pr-micro { font-size: var(--t-micro); color: var(--ink-3); }
+.pr-row { display: flex; align-items: center; gap: var(--s3); }
+.pr-col { display: grid; gap: var(--s3); }
+.pr-between { display: flex; align-items: center; justify-content: space-between; gap: var(--s3); }
+.pr-wrap { flex-wrap: wrap; }
+.pr-hr { border: 0; border-top: 1px solid var(--line); margin: var(--s5) 0; }
+.pr-mobile-only { display: none; }
+
+/* ==========================================================================
+   11 · Mobile — 390px
+   O MESMO arquivo vira a tela mobile. Uma tela só, dois PNGs: garante que
+   o conteúdo e a hierarquia sejam os mesmos nos dois tamanhos.
+   ========================================================================== */
+
+@media (max-width: 560px) {
+  :root { --t-display: 22px; --t-title: 18px; }
+
+  .pr-screen { max-width: 100%; }
+  .pr-body { flex-direction: column; }
+  .pr-main { padding: var(--s4); padding-bottom: calc(var(--s8) + var(--s5)); }
+  .pr-caption { padding: var(--s2) var(--s4); }
+  .pr-caption .pr-caption-meta { display: none; }
+
+  .pr-appbar { height: 56px; padding: 0 var(--s4); gap: var(--s2); }
+  .pr-appbar-nav { display: none; }
+
+  /* sidebar vira barra inferior fixa: até 5 destinos, alvo de 44px */
+  .pr-sidebar {
+    position: fixed; bottom: 0; left: 0; right: 0;
+    width: auto; flex: none; flex-direction: row;
+    border-right: 0; border-top: 1px solid var(--line);
+    background: var(--bg); padding: var(--s1) var(--s2);
+    padding-bottom: max(var(--s1), env(safe-area-inset-bottom, 0px));
+    z-index: 5;
+  }
+  .pr-sidebar-group, .pr-sidebar .pr-nav-item:nth-child(n+7) { display: none; }
+  .pr-nav-item {
+    flex: 1; flex-direction: column; gap: 2px;
+    min-height: var(--touch); padding: var(--s1);
+    font-size: var(--t-micro); text-align: center;
+  }
+  .pr-nav-item::before { width: 20px; height: 20px; flex-basis: 20px; }
+  .pr-nav-item[aria-current="page"] { background: transparent; }
+  /* contador vira marca sobre o ícone: empilhado, ele deformava a altura da barra */
+  .pr-nav-item { position: relative; }
+  .pr-nav-item .pr-badge {
+    position: absolute; top: 0; left: 50%; margin-left: 4px;
+    height: 15px; padding: 0 4px; font-size: 9px;
+    background: var(--action); border-color: var(--action); color: var(--ink-invert);
+  }
+  .pr-nav-item .pr-badge::before { display: none; }
+
+  .pr-grid.cols-2, .pr-grid.cols-3, .pr-grid.cols-4, .pr-grid.sidebar-right,
+  .pr-fieldrow { grid-template-columns: 1fr; }
+
+  .pr-pagehead { flex-direction: column; gap: var(--s3); }
+  .pr-pagehead-actions { margin-left: 0; width: 100%; }
+  .pr-pagehead-actions .pr-btn { flex: 1; }
+
+  .pr-tabs { padding: 0 var(--s4); gap: var(--s4); overflow-x: auto; }
+  .pr-toolbar { gap: var(--s2); }
+  .pr-toolbar .pr-field, .pr-toolbar .pr-inputgroup { width: 100%; }
+  .pr-toolbar-end { margin-left: 0; width: 100%; }
+
+  /* tabela vira cartões empilhados: scroll horizontal em tabela é armadilha.
+     O rótulo fica ACIMA do valor, não ao lado: a célula pode conter título +
+     subtítulo + badge, e rótulo lateral quebraria em colunas soltas. */
+  .pr-table, .pr-table caption, .pr-table tbody, .pr-table tr, .pr-table td { display: block; width: 100%; }
+  .pr-table thead { display: none; }
+  .pr-table caption { padding: var(--s3) 0; }
+  .pr-table tr { border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: var(--s3); padding: var(--s3); }
+  .pr-table td { border: 0; padding: var(--s2) 0; }
+  .pr-table td + td { border-top: 1px solid var(--line); }
+  .pr-table td::before {
+    content: attr(data-label); display: block;
+    font-size: var(--t-micro); text-transform: uppercase; letter-spacing: .06em;
+    color: var(--ink-3); font-weight: 600; margin-bottom: 2px;
+  }
+  .pr-table td:empty, .pr-table td:not([data-label])::before { display: none; }
+  .pr-table td.num { text-align: left; }
+  .pr-table .pr-rowactions { justify-content: flex-start; margin-top: var(--s1); }
+
+  .pr-modal { top: auto; bottom: 0; left: 0; transform: none; width: 100%; border-radius: var(--radius-lg) var(--radius-lg) 0 0; }
+  .pr-drawer { width: 100%; border-left: 0; }
+  .pr-modal-foot { flex-direction: column-reverse; }
+  .pr-modal-foot .pr-btn { width: 100%; }
+
+  .pr-form { max-width: none; }
+  .pr-formactions { position: sticky; bottom: 0; background: var(--bg); flex-direction: column-reverse; }
+  .pr-formactions .pr-btn { width: 100%; }
+  .pr-formactions .pr-spacer { display: none; }
+
+  .pr-stepper { overflow-x: auto; }
+  .pr-step span { display: none; }
+  .pr-mobile-only { display: revert; }
+  .pr-desktop-only { display: none; }
+
+  .pr-fab {
+    position: fixed; right: var(--s4); bottom: calc(var(--s8) + var(--s3));
+    width: 56px; height: 56px; border-radius: 50%;
+    background: var(--action); color: var(--ink-invert);
+    display: grid; place-items: center; box-shadow: var(--shadow-lg); z-index: 6;
+  }
+}
+
+@media (min-width: 561px) { .pr-fab { display: none; } }
+
+/* ==========================================================================
+   12 · Kit de componentes (usado só pelo validation.html)
+   ========================================================================== */
+
+.kit { padding: var(--s6); display: grid; gap: var(--s6); background: var(--bg); }
+.kit-sec { display: grid; gap: var(--s4); }
+.kit-sec > h2 {
+  margin: 0; font-size: var(--t-small); font-weight: 700;
+  text-transform: uppercase; letter-spacing: .1em; color: var(--ink-3);
+  border-bottom: 1px solid var(--line); padding-bottom: var(--s2);
+}
+.kit-row { display: flex; align-items: flex-start; gap: var(--s4); flex-wrap: wrap; }
+.kit-box { border: 1px dashed var(--line-strong); border-radius: var(--radius); padding: var(--s4); position: relative; min-width: 240px; flex: 1; }
+.kit-box > figcaption { position: absolute; top: -9px; left: var(--s3); background: var(--bg); padding: 0 var(--s2); font-size: var(--t-micro); font-family: var(--mono); color: var(--ink-3); }
+.kit-swatches { display: flex; gap: var(--s2); }
+.kit-swatch { width: 64px; }
+.kit-swatch i { display: block; height: 40px; border-radius: var(--radius); border: 1px solid var(--line); }
+.kit-swatch span { font-size: var(--t-micro); font-family: var(--mono); color: var(--ink-3); }
