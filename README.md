@@ -27,7 +27,7 @@ breakpoint em 560px (menu lateral vira barra inferior, tabela vira cartões).
 ## Instalação
 
 ```bash
-npx skills add github/thumendes/prancheta
+npx skills add Thumendes/prancheta
 ```
 
 Ou copie `skills/prancheta/` para `~/.claude/skills/`.
